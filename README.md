@@ -5,10 +5,10 @@
 # Empty or full
 This neural network can recognize the presence of an obstacle on the road.
 # Project technologies
-In this project, I used the ResNet18 neural network, which I had previously trained on data that I had parsed from the Internet.
+In this project, I used the ResNet18 pre-trained neural network, which I had trained on data that I had parsed from the Internet. I also used the streamlit library to build my app. 
 <br>
-This project was my Transfer learning task training.
+The project code is in the file resnet18.py. The neural network is located in the resnet18 file. You can see how the neural network was trained in the jupiter notebook empty-or-full.ipynb file.
 <br>
-You can download the data for this project from Google Drive, since files larger than 25 MB cannot be uploaded to Github. This is the link: https://drive.google.com/file/d/1YviwRi4HZlmQr-PxaydekV2W5HxYGqVo/view?usp=sharing
-<br>
-Thanks for your attention!
+All libraries for this project are described in requirements.txt.
+# Why did I create this project?
+This project was my Transfer learning task training. I wanted to use a pre-trained neural network in a real project and train it to predict what was not originally intended.
