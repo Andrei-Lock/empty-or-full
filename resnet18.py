@@ -26,18 +26,18 @@ test_transforms = transforms.Compose([
 
 
 def get_image():
-    url = st.file_uploader(label="Введите URL видео для распознавания", type=['jpg', 'png', 'jpeg'])
+    url = st.file_uploader(label="Put a photo of an empty or cluttered road here.", type=['jpg', 'png', 'jpeg'])
     return url
 
 def print_predictions(preds):
     st.write(preds)
 
 if __name__ == "__main__":
-    st.write('Проверка рекомендаций тем видео на YouTube')
+    st.write('Determination of the presence of obstacles on the road from the photo.')
 
     image = get_image()
 
-    result = st.button('Распознать соответствие рекомендаций темам видео')
+    result = st.button('Recognize the type of road')
     
     if result:
         image = Image.open(image)
@@ -62,5 +62,5 @@ if __name__ == "__main__":
         if pred[0] < 0.5:
             print_predictions('The way is clear. The result of neural network is ' + str(pred[0]))
         else:
-            print_predictions('The way is blocked. The result of neural network is ' + str(pred[0]))
+            print_predictions('The way is cluttered. The result of neural network is ' + str(pred[0]))
         
