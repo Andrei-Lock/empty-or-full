@@ -43,7 +43,7 @@ if __name__ == "__main__":
         image = Image.open(image)
         model = models.resnet18(weights=False)
         model.fc = torch.nn.Linear(model.fc.in_features, 2)
-        model.load_state_dict(torch.load('resnet18'))
+        model.load_state_dict(torch.load('app\empty-or-full\resnet18'))
         model.eval()
         
         convert_tensor = transforms.Compose([
