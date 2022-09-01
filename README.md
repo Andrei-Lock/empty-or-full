@@ -4,6 +4,8 @@
 ![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white)
 # Empty or full
 This neural network can recognize the presence of an obstacle on the road.
+# Demo
+The demo of the project is available at the link: https://andrei-lock-empty-or-full-resnet18-53nn5p.streamlitapp.com/.
 # Project technologies
 In this project, I used the ResNet18 pre-trained neural network, which I had trained on data that I had parsed from the Internet. I also used the streamlit library to build my app. 
 <br>
