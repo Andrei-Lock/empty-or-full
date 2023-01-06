@@ -33,11 +33,17 @@ def print_predictions(preds):
     st.write(preds)
 
 if __name__ == "__main__":
+    example_image = Image.open('./example_image.jpg')
+    
     st.write('Determination of the presence of obstacles on the road from the photo.')
 
     image = get_image()
 
     result = st.button('Recognize the type of road')
+    
+    st.write('Example.')
+    
+    st.image(example_image, caption='Example photo')
     
     if result:
         image = Image.open(image)
