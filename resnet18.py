@@ -26,7 +26,7 @@ test_transforms = transforms.Compose([
 
 
 def get_image():
-    url = st.file_uploader(label="Put a photo of an empty or cluttered road here.", type=['jpg', 'png', 'jpeg'])
+    url = st.file_uploader(label="Stellen Sie hier ein Foto einer leeren oder verstopften Straße ein.", type=['jpg', 'png', 'jpeg'])
     return url
 
 def print_predictions(preds):
@@ -35,15 +35,15 @@ def print_predictions(preds):
 if __name__ == "__main__":
     example_image = Image.open('./example_image.jpg')
     
-    st.write('Determination of the presence of obstacles on the road from the photo.')
+    st.write('Bestimmung des Vorhandenseins von Hindernissen auf der Straße anhand des Fotos.')
 
     image = get_image()
 
-    result = st.button('Recognize the type of road')
+    result = st.button('Erkennen des Straßentyps')
     
-    st.write('Example.')
+    st.write('Beispiel.')
     
-    st.image(example_image, caption='Example photo')
+    st.image(example_image, caption='Beispielfoto')
     
     if result:
         image = Image.open(image)
@@ -66,7 +66,7 @@ if __name__ == "__main__":
         pred = torch.nn.functional.softmax(preds, dim=1)[:,1].data.cpu().numpy()
         
         if pred[0] < 0.5:
-            print_predictions('The way is clear. The result of neural network is ' + str(pred[0]))
+            print_predictions('Der Weg ist frei. Das Ergebnis des neuronalen Netzes ist  ' + str(pred[0]))
         else:
-            print_predictions('The way is cluttered. The result of neural network is ' + str(pred[0]))
+            print_predictions('Der Weg ist unübersichtlich. Das Ergebnis des neuronalen Netzes ist ' + str(pred[0]))
         
