@@ -45,6 +45,8 @@ if __name__ == "__main__":
     
     st.image(example_image, caption='Beispielfoto')
     
+    result_example = st.button('Erkennen des Straßentyps des Beispiels')
+    
     if result:
         image = Image.open(image)
         model = models.resnet18(weights=False)
@@ -69,4 +71,29 @@ if __name__ == "__main__":
             print_predictions('Der Weg ist frei. Das Ergebnis des neuronalen Netzes ist  ' + str(pred[0]))
         else:
             print_predictions('Der Weg ist unübersichtlich. Das Ergebnis des neuronalen Netzes ist ' + str(pred[0]))
+    
+    if result_example:
+        image = Image.open(example_image)
+        model = models.resnet18(weights=False)
+        model.fc = torch.nn.Linear(model.fc.in_features, 2)
+        model.load_state_dict(torch.load('resnet18'))
+        model.eval()
+        
+        convert_tensor = transforms.Compose([
+            transforms.Resize((224, 224)),
+            transforms.ToTensor(),
+            transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+        ])
+
+        tensor_img = convert_tensor(image)
+        
+        model.eval()
+        
+        preds = model(tensor_img.unsqueeze(0))
+        pred = torch.nn.functional.softmax(preds, dim=1)[:,1].data.cpu().numpy()
+        
+        if pred[0] < 0.5:
+            print_predictions('BEISPIEL. Der Weg ist frei. Das Ergebnis des neuronalen Netzes ist  ' + str(pred[0]))
+        else:
+            print_predictions('BEISPIEL. Der Weg ist unübersichtlich. Das Ergebnis des neuronalen Netzes ist ' + str(pred[0]))
         
