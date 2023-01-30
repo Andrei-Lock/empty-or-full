@@ -73,7 +73,7 @@ if __name__ == "__main__":
             print_predictions('Der Weg ist unübersichtlich. Das Ergebnis des neuronalen Netzes ist ' + str(pred[0]))
     
     if result_example:
-        image = Image.open(example_image)
+        image = example_image
         model = models.resnet18(weights=False)
         model.fc = torch.nn.Linear(model.fc.in_features, 2)
         model.load_state_dict(torch.load('resnet18'))
