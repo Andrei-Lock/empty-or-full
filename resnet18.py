@@ -41,7 +41,7 @@ if __name__ == "__main__":
 
     result = st.button('Распознать тип дороги')
     
-    st.write('Beispiel.')
+    st.write('Пример.')
     
     st.image(example_image, caption='Фото-пример')
     
