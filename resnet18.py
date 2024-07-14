@@ -26,7 +26,7 @@ test_transforms = transforms.Compose([
 
 
 def get_image():
-    url = st.file_uploader(label="Stellen Sie hier ein Foto einer leeren oder verstopften Straße ein.", type=['jpg', 'png', 'jpeg'])
+    url = st.file_uploader(label="Перетащите или вставьте сюда фотографию пустой или загруженной дороги", type=['jpg', 'png', 'jpeg'])
     return url
 
 def print_predictions(preds):
@@ -35,17 +35,17 @@ def print_predictions(preds):
 if __name__ == "__main__":
     example_image = Image.open('./example_image.jpg')
     
-    st.write('Bestimmung des Vorhandenseins von Hindernissen auf der Straße anhand des Fotos.')
+    st.write('Определение возможности проезда по дороге по фото')
 
     image = get_image()
 
-    result = st.button('Erkennen des Straßentyps')
+    result = st.button('Распознать тип дороги')
     
     st.write('Beispiel.')
     
-    st.image(example_image, caption='Beispielfoto')
+    st.image(example_image, caption='Фото-пример')
     
-    result_example = st.button('Erkennen des Straßentyps des Beispiels')
+    result_example = st.button('Распознать тип дороги примера')
     
     if result:
         image = Image.open(image)
@@ -68,9 +68,9 @@ if __name__ == "__main__":
         pred = torch.nn.functional.softmax(preds, dim=1)[:,1].data.cpu().numpy()
         
         if pred[0] < 0.5:
-            print_predictions('Der Weg ist frei. Das Ergebnis des neuronalen Netzes ist  ' + str(pred[0]))
+            print_predictions('Путь свободен. Результат работы нейросети: ' + str(pred[0]))
         else:
-            print_predictions('Der Weg ist unübersichtlich. Das Ergebnis des neuronalen Netzes ist ' + str(pred[0]))
+            print_predictions('Путь занят. Результат работы нейросети: ' + str(pred[0]))
     
     if result_example:
         image = example_image
@@ -93,7 +93,7 @@ if __name__ == "__main__":
         pred = torch.nn.functional.softmax(preds, dim=1)[:,1].data.cpu().numpy()
         
         if pred[0] < 0.5:
-            print_predictions('BEISPIEL. Der Weg ist frei. Das Ergebnis des neuronalen Netzes ist  ' + str(pred[0]))
+            print_predictions('ПРИМЕР. Путь свободен. Результат работы нейросети: ' + str(pred[0]))
         else:
-            print_predictions('BEISPIEL. Der Weg ist unübersichtlich. Das Ergebnis des neuronalen Netzes ist ' + str(pred[0]))
+            print_predictions('ПРИМЕР. Путь занят. Результат работы нейросети: ' + str(pred[0]))
         
